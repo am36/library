@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% unless user_signed_in? %>
+<li class="<%= "active" if current_page?("/users/sign_up") %>">
+<%= link_to "Sign up", new_user_registration_path %>
+</li>
+<li class="<%= "active" if current_page?("/users/sign_in") %>">
+<%= link_to "Sign in", new_user_session_path %>
+</li>
+<% end %>
+<% if user_signed_in? %>
+<div class="navbar-right">
+<p class="navbar-text">
+Signed in as <%= current_user.email %>
+</p>
+</div>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
