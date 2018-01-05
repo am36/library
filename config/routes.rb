@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    root "application#index"
+  end
+
   root 'static_pages#welcome'
 
   devise_for :users
